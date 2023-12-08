@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 @Component({
