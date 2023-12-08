@@ -1,0 +1,20 @@
+<div class="contenedor-horizontal">
+
+  <h2>Incio de Sesion</h2>&nbsp; &nbsp; &nbsp;
+
+  <div class="card flex flex-column align-items-center gap-3 ">
+
+    <input pInputText type="text" placeholder="Correo Electronico" [(ngModel)]="email" />
+  </div>
+
+  &nbsp; &nbsp; &nbsp;
+
+  <div class="card flex justify-content-center">
+
+    <p-password [(ngModel)]="password" [feedback]="false" [toggleMask]="true" placeholder="Contraseña"></p-password>
+  </div> &nbsp; &nbsp; &nbsp;
+
+  <p-button (onClick)="Validar()">Iniciar</p-button>
+  <p-toast></p-toast>
+
+</div>
