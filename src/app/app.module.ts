@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { PrimeModule } from './prime/prime.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     PrimeModule,
     AppRoutingModule,
@@ -22,7 +28,7 @@ import { LoginModule } from './login/login.module';
     HttpClientModule,
 
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,22 @@
+<p-splitter [style]="{ height: '100%', Width:'100%',}" [panelSizes]="[15, 85]" layout="vertical" styleClass="mb-5" [gutterSize]="0">
+  <ng-template pTemplate >
+    <mat-drawer-container class="example-container" [style]="{ 'background-color': '#7492d7', width: '100%' }">
+      <div class="button-container">
+
+        <button pButton type="button" (click)="navigateToAcciones()" icon="pi pi-pencil" class="p-button-rounded p-button-success"  pTooltip="Agregar Productos"></button>
+
+        <router-outlet *ngIf="showAccionesComponent" name="accionesOutlet"></router-outlet>
+
+        <button pButton type="button" (click)="toggleAccionesComponent()" icon="pi pi-times" class="p-button-rounded p-button-danger"  pTooltip="Cerrar Ventana">
+        </button>
+      </div>
+
+
+    </mat-drawer-container>
+  </ng-template>
+
+  <ng-template pTemplate >
+      <div class="col flex align-items-center justify-content-center" [style]="{ height: '100%', Width:'100%',}">Panel 2 Panel 1Panel 1Panel 1   </div>
+  </ng-template>
+
+</p-splitter>

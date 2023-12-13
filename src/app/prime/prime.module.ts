@@ -8,6 +8,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
+import { SplitterModule } from 'primeng/splitter';
+import { DividerModule } from 'primeng/divider';
+import { CardModule } from 'primeng/card';
+import { MessageModule } from 'primeng/message';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
   exports:[
@@ -19,7 +28,17 @@ import { ToastModule } from 'primeng/toast';
     InputTextModule,
     PasswordModule,
     MessagesModule,
+    MessageModule,
     ToastModule,
+    SplitterModule,
+    DividerModule,
+    CardModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatTableModule,
+    ScrollPanelModule,
+    ProgressBarModule,
+
   ]
 })
 export class PrimeModule { }

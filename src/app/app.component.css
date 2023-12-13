@@ -1,0 +1,11 @@
+.toolbar-title {
+  font-size: 1.5rem; /* Ajusta el tamaño del texto según tus necesidades */
+  font-weight: bold; /* Ajusta el peso de la fuente según tus necesidades */
+  text-align: center; /* Centra el texto en el contenedor */
+  color: #333; /* Cambia el color del texto según tus preferencias */
+}
+
+.matcustom {
+  width: 100vw; /* 100% del ancho de la ventana */
+  height: 100vh; /* 100% de la altura de la ventana */
+}
