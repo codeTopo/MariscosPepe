@@ -17,6 +17,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   exports:[
@@ -38,6 +39,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     MatTableModule,
     ScrollPanelModule,
     ProgressBarModule,
+    PaginatorModule,
 
   ]
 })

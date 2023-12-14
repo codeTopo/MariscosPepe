@@ -41,16 +41,14 @@ export class AccionesComponent {
         errorMessages.push({ severity: 'error', summary: errorMessage });
       }
     }
-
     return errorMessages;
-  }
-
+  };
   capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+  };
 
 
-  // Ejemplo de cómo puedes usar el servicio para crear un nuevo producto
+  // Solicitud http Agregar Producto
   crearNuevoProducto() {
     this.formSubmitted = true;
     if (this.productoForm.invalid) {

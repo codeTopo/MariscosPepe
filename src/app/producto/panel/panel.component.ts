@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../producto.service';
 import { Router } from '@angular/router';
+import { Producto } from '../ProductosModule';
 
 
 @Component({
@@ -10,20 +11,22 @@ import { Router } from '@angular/router';
 })
 export class PanelComponent implements OnInit {
 
+  productos: Producto[] = [];
   showAccionesComponent: boolean = false;
-
 
   constructor(private productoService: ProductoService, private router: Router) { }
 
   ngOnInit(): void {
     this.GetPedidos();
+
   };
+
 
   GetPedidos(){
     this.productoService.obtenerProductos().subscribe(
       data => {
-
-        console.log(data);
+        this.productos = data.data; // Accede a la propiedad 'data' en la respuesta del servidor
+        console.log(this.productos);
       },
       error => {
         // Manejar el error aquí

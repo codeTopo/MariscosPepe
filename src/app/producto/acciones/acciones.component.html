@@ -7,7 +7,8 @@
   <input type="text" pInputText placeholder="Ubicacion" formControlName="ubicacion" >&nbsp; &nbsp;
 
 
-  <p-button label="Crear Producto" [text]="true" severity="success"  type="submit"></p-button>
+  <p-button label="Crear Producto" [text]="true" [raised]="true" severity="success"  class="bg-white" type="submit"></p-button>
+
   <p-progressBar *ngIf="loading" mode="indeterminate"></p-progressBar>
 
    <p-messages [(value)]="messages" [enableService]="false" [closable]="false" class="error-messages"></p-messages>
