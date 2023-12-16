@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './login/login.module';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DeleteComponent } from './delete/delete.component';
+import { ClienteModule } from './cliente/cliente.module';
 
 
 
@@ -15,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
+    ClienteModule,
     HttpClientModule,
-
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

@@ -24,9 +24,9 @@
 
 <!--Para mostrar las rutas  -->
 <p-sidebar [(visible)]="sidebarLeft" position="left" styleClass="w-10rem" >
-   <a routerLink="/producto/lista" routerLinkActive="active"  (click)="closeSidebarLeft()"> <i class="pi pi-list icon"> </i> Productos</a>
+   <a routerLink="/producto/lista" routerLinkActive="active"  (click)="closeSidebarLeft()"> <i class="pi pi-list icon"> &nbsp; </i> Productos</a>
    <p-divider></p-divider>
-   <router-outlet name="accionesOutlet"></router-outlet>
+   <a routerLink="/cliente/cliente"> <i class="pi pi-user icon"> &nbsp; </i> Clientes </a>
 </p-sidebar>
 
   <router-outlet></router-outlet>

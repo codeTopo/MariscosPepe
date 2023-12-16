@@ -29,3 +29,21 @@ body, html {
   color: black;
   margin-right: 10px;
 }
+
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-item {
+  text-align: center;
+}
+
+.flex-item.description {
+  flex: 2; /* Ocupa más espacio para la descripción */
+}
+
+.flex-item.price {
+  font-weight: bold;
+}

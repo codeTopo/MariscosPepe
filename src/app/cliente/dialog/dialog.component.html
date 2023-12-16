@@ -1,0 +1,28 @@
+<style>
+  h1 {
+    text-align: center;
+  }
+</style>
+
+<div  [ngStyle]="{'width':'100%', 'background': 'linear-gradient(to right, #1f49aa, #7ca8ba, #7492d7)'}">
+
+  <h1 mat-dialog-title class="mat-h1"  style="font-weight: bold;">Agregar Cliente</h1>
+
+  <div mat-dialog-content [formGroup]="addcliente">
+    <input type="text" pInputText placeholder="Nombre" formControlName="nombre"   class="mt-2" > &nbsp; &nbsp;
+    <input type="text" pInputText placeholder="Apellido" formControlName="apellido" class="mt-2" > &nbsp; &nbsp;
+    <input type="text" pInputText placeholder="Calle" formControlName="calle" class="mt-2" > &nbsp; &nbsp;
+    <input type="text" pInputText placeholder="Colonia" formControlName="colonia" class="mt-2" > &nbsp; &nbsp;
+    <input type="text" pInputText placeholder="Numero" formControlName="numero" class="mt-2" > &nbsp; &nbsp;
+    <input type="text" pInputText placeholder="Telefono" formControlName="telefono" class="mt-2" > &nbsp; &nbsp;
+    <input type="text" pInputText placeholder="Referencia" formControlName="referencia" class="mt-2" > &nbsp; &nbsp;
+  </div>
+  <p-progressBar *ngIf="loading" mode="indeterminate"></p-progressBar>
+  <p-messages [(value)]="messages" [enableService]="false" [closable]="false" class="error-messages" ></p-messages>
+  <div mat-dialog-actions >
+    <p-button icon="pi pi-check" pTooltip="Crear Cliente" [rounded]="true" [text]="true" severity="success" (click)="AddCiente()"></p-button> &nbsp; &nbsp; &nbsp;
+    <p-button icon="pi pi-times" pTooltip="Cancelar" [rounded]="true" [text]="true" severity="danger" (click)="cerrar()"></p-button>
+  </div>
+
+</div>
+

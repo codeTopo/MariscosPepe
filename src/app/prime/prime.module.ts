@@ -13,11 +13,13 @@ import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { PaginatorModule } from 'primeng/paginator';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CheckboxModule } from 'primeng/checkbox';
+import { TabViewModule } from 'primeng/tabview';
+
 
 @NgModule({
   exports:[
@@ -34,13 +36,13 @@ import { PaginatorModule } from 'primeng/paginator';
     SplitterModule,
     DividerModule,
     CardModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatTableModule,
     ScrollPanelModule,
     ProgressBarModule,
     PaginatorModule,
-
+    DynamicDialogModule,
+    MatDialogModule,
+    CheckboxModule,
+    TabViewModule,
   ]
 })
 export class PrimeModule { }

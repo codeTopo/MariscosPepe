@@ -1,34 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PanelComponent } from './panel/panel.component';
-import { PrimeModule } from '../prime/prime.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AccionesComponent } from './acciones/acciones.component';
+import { PrimeModule } from '../prime/prime.module';
+import { ListaComponent } from './lista/lista.component';
+import { HttpClientModule } from '@angular/common/http';
 import { DialogComponent } from './dialog/dialog.component';
 import { FilterPipe } from './filter.pipe';
 
 
+
+
 const routes: Routes = [
-  { path: 'lista', component: PanelComponent, children: [
-    { path: 'acciones', component: AccionesComponent, outlet: 'accionesOutlet' }
-  ]}
+  {path:'cliente', component:ListaComponent}
 ];
+
 
 @NgModule({
   declarations: [
-    PanelComponent,
-    AccionesComponent,
+    ListaComponent,
     DialogComponent,
-    FilterPipe,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
     PrimeModule,
     RouterModule.forChild(routes),
+
   ],
   providers:[
     MessageService
@@ -36,4 +38,4 @@ const routes: Routes = [
   exports: [RouterModule],
 
 })
-export class ProductoModule { }
+export class ClienteModule { }

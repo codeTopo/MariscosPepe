@@ -1,0 +1,19 @@
+
+.centered-text {
+  font-weight: bold;
+  margin: 0;
+}
+
+.header-title {
+  font-weight: bold;
+  margin: 0; /* Elimina el margen predeterminado del h2 */
+
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px; /* Ajusta el espaciado según tus necesidades */
+}

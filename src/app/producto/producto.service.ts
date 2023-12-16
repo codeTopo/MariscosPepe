@@ -22,5 +22,9 @@ export class ProductoService {
     return this.apiservice.post<Producto>(endpoint, producto);
   };
 
+  eliminarProducto(id: number): Observable<Respuestas<Producto>> {
+    const endpoint = `api/productos/${id}`; // Agregar el ID a la URL
+    return this.apiservice.delete<Producto>(endpoint, null); // No se necesita body para DELETE
+  }
 }
 
