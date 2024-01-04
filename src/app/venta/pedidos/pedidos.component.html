@@ -1,0 +1,106 @@
+<p-splitter [style]="{ height: '100%', Width:'100%',}" [panelSizes]="[100]" layout="vertical" styleClass="mb-5" [gutterSize]="0">
+
+  <!--Panel Principal-->
+  <ng-template pTemplate>
+    <mat-drawer-container class="example-container"  [ngStyle]="{ 'width': '100%', 'height': '100%', 'background': 'linear-gradient(to right, #1f49aa, #7ca8ba, #7492d7)' }">
+      <div class="flex flex-row flex-wrap ">
+        <p-card class="bg-primary-200 w-23rem  m-auto mt-1  border-round shadow-3"  *ngFor="let ven of venta" [header]="'#' + ven.idVenta.toString() + ' - Fecha: ' +  _datePipe.transform(ven.fecha, 'dd/MM', 'en-US')">
+
+          <p-button  pTooltip="Editar" icon="pi pi-pencil"  severity="warning"(click)="openDialog(ven)"></p-button>
+          <p-divider></p-divider>
+          <p-tabView styleClass="tabview-custom">
+            <!--datos del cliente-->
+            <p-tabPanel *ngFor="let cli of ven.clientesV">
+              <ng-template pTemplate="header">
+                <span >Cliente</span>
+              </ng-template>
+              <!--Datos de la venta Usuario-->
+              <p-tabView>
+                <!--usuario-->
+                <p-tabPanel>
+                  <ng-template pTemplate="header">
+                    <span ></span>
+                    <i class="pi pi-user"></i>
+                  </ng-template>
+                  <div class="p-col-12 p-md-6 ">
+                    <strong>Nombre:</strong>  {{cli.nombre}}
+                  </div>
+                  <p-divider></p-divider>
+                  <div class="p-col-12 p-md-6 ">
+                    <strong>Apellido</strong>  {{cli.apellido}}
+                  </div>
+                </p-tabPanel>
+                <!--Direccion-->
+                <p-tabPanel>
+                  <ng-template pTemplate="header">
+                    <i class="pi pi-map-marker"></i>
+                  </ng-template>
+                  <div class="p-grid">
+                    <div class="p-col-12 p-md-6 ">
+                      <strong>Calle</strong>  {{cli.calle}}
+                    </div>
+                    <p-divider></p-divider>
+                    <div class="p-col-12 p-md-6 ">
+                      <strong>Colonia</strong>  {{cli.colonia}}
+                    </div>
+                    <p-divider></p-divider>
+                    <div class="p-col-12 p-md-6 ">
+                      <strong>Numero</strong>  {{cli.numero}}
+                    </div>
+                    <p-divider></p-divider>
+                    <div class="p-col-12 p-md-6 ">
+                      <strong>Telefono</strong>  <strong> {{cli.telefono}}</strong>
+                    </div>
+                    <p-divider></p-divider>
+                    <div class="p-col-12 p-md-6 ">
+                      <strong>Referencias</strong>  {{cli.referencia}}
+                    </div>
+                  </div>
+                </p-tabPanel>
+              </p-tabView>
+            </p-tabPanel>
+            <!--datos del pedido-->
+            <p-tabPanel>
+              <ng-template pTemplate="header">
+                <span >Pedido</span>
+              </ng-template>
+              <div *ngFor="let ped of ven.pedido" class="formgrid grid">
+                <div class="field col">
+                  <strong>#</strong>
+                  <label >{{ped.idProducto}}</label>
+                </div>
+                <div class="field col" *ngFor="let nom of ped.productoV">
+                  <strong>Nombre:</strong>
+                  <label >{{nom.nombre}}</label>
+                </div>
+                <div class="field col">
+                  <strong>cantidad</strong>
+                  <label >{{ped.cantidad}}</label>
+                </div>
+              </div>
+            </p-tabPanel>
+            <!--status-->
+            <p-tabPanel>
+              <ng-template pTemplate="header">
+                <span >Status</span>
+              </ng-template>
+              <div  class="formgrid grid">
+                <div class="field col">
+                  <strong>Status</strong>
+                  <label >{{ven.status}}</label>
+                </div>
+
+                <div class="field col">
+                  <strong>Repartidor</strong>
+                  <label >{{ven.repartidor}}</label>
+                </div>
+              </div>
+            </p-tabPanel>
+          </p-tabView>
+
+        </p-card>
+      </div>
+    </mat-drawer-container>
+  </ng-template>
+
+</p-splitter>

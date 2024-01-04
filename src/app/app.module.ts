@@ -10,6 +10,8 @@ import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeleteComponent } from './delete/delete.component';
 import { ClienteModule } from './cliente/cliente.module';
+import { VentaModule } from './venta/venta.module';
+import { PedidoComponent } from './pedido/pedido.component';
 
 
 
@@ -18,6 +20,7 @@ import { ClienteModule } from './cliente/cliente.module';
   declarations: [
     AppComponent,
     DeleteComponent,
+    PedidoComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { ClienteModule } from './cliente/cliente.module';
     AppRoutingModule,
     LoginModule,
     ClienteModule,
+    VentaModule,
     HttpClientModule,
   ],
   providers: [MessageService],

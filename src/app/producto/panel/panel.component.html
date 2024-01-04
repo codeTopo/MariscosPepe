@@ -56,7 +56,7 @@
 
 
           <ng-template pTemplate="footer">
-            <p-button  pTooltip="Editar" icon="pi pi-pencil" (click)="DialogEdit(producto)" severity="warning"></p-button>
+            <p-button  pTooltip="Editar" icon="pi pi-pencil"  severity="warning" (click)="editProducto(producto)"></p-button>
             <p-button  pTooltip="Eliminar" icon="pi pi-times" (click)="Delete(producto)"  severity="danger" [style]="{ 'margin-left': '8em' }"></p-button>
           </ng-template>
 

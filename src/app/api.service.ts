@@ -9,7 +9,7 @@ import { Respuestas } from './Respuestas';
 })
 export class ApiService {
 
-  public apiUrl = 'https://mariscospepe.somee.com'; // Coloca la URL de tu API aquí
+  public apiUrl = 'https://localhost:7074'; // Coloca la URL de tu API aquí
 
   constructor(private http: HttpClient) {}
 

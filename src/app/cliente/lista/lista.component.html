@@ -25,59 +25,59 @@
         <p-card class="bg-primary-200 w-17rem m-auto mt-1  border-round shadow-3"  *ngFor="let cli of cliente | filter:filtro" >
 
           <p-tabView>
-            <!--Panel Del Cliente-->
-            <p-tabPanel>
+              <!--Panel Del Cliente-->
+              <p-tabPanel>
 
-              <ng-template pTemplate="header">
-                <span >Cliente</span>
-                <i class="pi pi-user"></i>
-              </ng-template>
-
-             <div class="p-grid">
-              <div class="p-col-12 p-md-6 ">
-                <strong>Nombre:</strong>  {{cli.nombre}}
-              </div>
-              <p-divider></p-divider>
-              <div class="p-col-12 p-md-6 ">
-                <strong>Apellido</strong>  {{cli.apellido}}
-              </div>
-
-             </div>
-            </p-tabPanel>
-
-            <!--Panel De Direccion-->
-            <p-tabPanel>
-              <ng-template pTemplate="header">
-                <span>Direccion</span>
-                <i class="pi pi-map-marker"></i>
-              </ng-template>
+                <ng-template pTemplate="header">
+                  <span >Cliente</span>
+                  <i class="pi pi-user"></i>
+                </ng-template>
 
               <div class="p-grid">
                 <div class="p-col-12 p-md-6 ">
-                  <strong>Calle:</strong>  {{cli.calle}}
-                </div>
-                <div class="p-col-12 p-md-6">
-                  <strong>Numero:</strong> {{cli.numero}}
+                  <strong>Nombre:</strong>  {{cli.nombre}}
                 </div>
                 <p-divider></p-divider>
-                <div class="p-col-12 p-md-6">
-                  <strong>Colonia:</strong> {{cli.colonia}}
+                <div class="p-col-12 p-md-6 ">
+                  <strong>Apellido</strong>  {{cli.apellido}}
                 </div>
-                <div class="p-col-12 p-md-6">
-                  <strong>Telefono:</strong> {{cli.telefono}}
-                </div>
-                <p-divider></p-divider>
-                <div class="p-col-12">
-                  <strong>Referencia:</strong> {{cli.referencia}}
-                </div>
-              </div>
-            </p-tabPanel>
-        </p-tabView>
 
-        <ng-template pTemplate="footer" >
-          <p-button  pTooltip="Editar" icon="pi pi-pencil" (click)="EditarCliente(cli)" severity="warning"></p-button>
-          <p-button  pTooltip="Eliminar" icon="pi pi-times" (click)="DeleteCliente(cli)"   severity="danger"   [style]="{ 'margin-left': '8em'}" ></p-button>
-        </ng-template>
+              </div>
+              </p-tabPanel>
+
+              <!--Panel De Direccion-->
+              <p-tabPanel>
+                <ng-template pTemplate="header">
+                  <span>Direccion</span>
+                  <i class="pi pi-map-marker"></i>
+                </ng-template>
+
+                <div class="p-grid">
+                  <div class="p-col-12 p-md-6 ">
+                    <strong>Calle:</strong>  {{cli.calle}}
+                  </div>
+                  <div class="p-col-12 p-md-6">
+                    <strong>Numero:</strong> {{cli.numero}}
+                  </div>
+                  <p-divider></p-divider>
+                  <div class="p-col-12 p-md-6">
+                    <strong>Colonia:</strong> {{cli.colonia}}
+                  </div>
+                  <div class="p-col-12 p-md-6">
+                    <strong>Telefono:</strong> {{cli.telefono}}
+                  </div>
+                  <p-divider></p-divider>
+                  <div class="p-col-12">
+                    <strong>Referencia:</strong> {{cli.referencia}}
+                  </div>
+                </div>
+              </p-tabPanel>
+          </p-tabView>
+
+          <ng-template pTemplate="footer" >
+            <p-button  pTooltip="Editar" icon="pi pi-pencil" (click)="EditarCliente(cli)" severity="warning"></p-button>
+            <p-button  pTooltip="Eliminar" icon="pi pi-times" (click)="DeleteCliente(cli)"   severity="danger"   [style]="{ 'margin-left': '8em'}" ></p-button>
+          </ng-template>
 
         </p-card>
       </div>

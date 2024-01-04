@@ -2,23 +2,48 @@
   h1 {
     text-align: center;
   }
+
+  .custom-dialog-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .input-container input {
+    flex: 1;
+    margin-right: 10px;
+  }
 </style>
 
 
-<h1 mat-dialog-title class="mat-h1"  style="font-weight: bold;">Editar Producto</h1>
-<div mat-dialog-content>
-  <input type="text" pInputText placeholder="Nombre" > &nbsp; &nbsp;
-  <input type="text" pInputText placeholder="Descripcion" > &nbsp; &nbsp;
-  <input type="number" pInputText placeholder="Precio" max="999"  pattern="[0-9]{1,3}"> &nbsp; &nbsp;
-  <input type="text" pInputText placeholder="Ubicacion"  >&nbsp; &nbsp;
+<h1 mat-dialog-title class="mat-h1"  style="font-weight: bold;" >Editar Producto</h1>
 
-  <div class="card flex justify-content-center gap-3">
-    <p-checkbox  value="1" label="Existencia" [(ngModel)]="existenteCheckbox"></p-checkbox>
-    <p-checkbox  value="0" label="Agotado" [(ngModel)]="agotadoCheckbox"></p-checkbox>
+<div mat-dialog-content class="custom-dialog-content">
+  <div class="input-container">
+    <input type="text" pInputText placeholder="Nombre" [(ngModel)]="data.producto.nombre" />
+    <input type="text" pInputText placeholder="Descripcion" [(ngModel)]="data.producto.descripcion" />
   </div>
+
+  <div class="input-container">
+    <input type="number" pInputText placeholder="Precio" [(ngModel)]="data.producto.precio" />
+    <input type="text" pInputText placeholder="Ubicacion" [(ngModel)]="data.producto.ubicacion" />
+  </div>
+
+  <div class="flex align-items-center">
+    <input type="checkbox" [(ngModel)]="checkbox1existencia" /> Existencia
+    <input type="checkbox" [(ngModel)]="checkbox2agotado" /> Agotado
+  </div>
+
 </div>
-<p-progressBar *ngIf="loading" mode="indeterminate"></p-progressBar>
+
+<p-progressBar *ngIf="mostrarProgressBar" mode="indeterminate"></p-progressBar>
+
 <div mat-dialog-actions >
-  <p-button icon="pi pi-check" pTooltip="Editar" [rounded]="true" [text]="true" severity="success" (click)="editProducto()"></p-button> &nbsp; &nbsp; &nbsp;
-  <p-button icon="pi pi-times" pTooltip="Cancelar" [rounded]="true" [text]="true" severity="danger" (click)="cerrar()"></p-button>
+  <p-button icon="pi pi-check" pTooltip="Editar" [rounded]="true" [text]="true" severity="success" (click)="guardarCambios()" ></p-button> &nbsp; &nbsp; &nbsp;
+  <p-button icon="pi pi-times" [rounded]="true" [text]="true" severity="danger" pTooltip="Cancelar"  mat-button (click)="cerrar()"></p-button>
 </div> <br>

@@ -4,12 +4,8 @@ import { Router } from '@angular/router';
 import { Producto } from '../ProductosModule';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { Message, MessageService } from 'primeng/api';
+import { Message } from 'primeng/api';
 import { DeleteComponent } from 'src/app/delete/delete.component';
-import { ApiService } from 'src/app/api.service';
-
-
-
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
@@ -21,6 +17,7 @@ export class PanelComponent implements OnInit {
   showAccionesComponent: boolean = false;
   messages: Message[] | undefined;
   filtro: string = '';
+  productoSeleccionado: Producto | null = null;
 
   constructor(
     private productoService: ProductoService,
@@ -56,15 +53,16 @@ export class PanelComponent implements OnInit {
     this.showAccionesComponent = !this.showAccionesComponent;
   };
 
-  DialogEdit(producto: Producto): void {
+  editProducto(producto: Producto): void {
+    this.productoSeleccionado = producto;  // Guarda el producto seleccionado
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px', // Ajusta el ancho según tus necesidades
-      data: producto // Pasa el producto a editar al diálogo
+      width: '500px',
+      data: { producto: this.productoSeleccionado }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.GetProductos();
+      console.log('El cuadro de diálogo fue cerrado');
     });
-  };
+  }
 
   Delete(producto:Producto){
     const dialogRef =this.dialog.open(DeleteComponent, {

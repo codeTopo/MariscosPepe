@@ -1,0 +1,43 @@
+
+
+<div class="card flex justify-content-center">
+  <p-card [style]="{ width: '400px', header:'400px' }">
+      <ng-template pTemplate="header">
+        <h1> # {{ data.venta.idVenta }}</h1>
+        <p-progressBar *ngIf="mostrarProgressBar" mode="indeterminate"></p-progressBar>
+
+      </ng-template>
+      <p-splitter [style]="{ height: '300px' }" styleClass="mb-5">
+        <ng-template pTemplate>
+            <div >
+              <div *ngFor="let repartidor of listaRepartidores">
+                <p-checkbox
+                  [name]="repartidor.nombre"
+                  [value]="repartidor.id"
+                  [label]="repartidor.nombre"
+                  [(ngModel)]="selectedRepartidores[repartidor.nombre]">
+                </p-checkbox>
+                <p-divider></p-divider>
+              </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate>
+            <div >
+              <div *ngFor="let status of listaStatus">
+                <p-checkbox
+                  [name]="status"
+                  [value]="status"
+                  [label]="status"
+                  [(ngModel)]="selectedStatus[status]">
+                </p-checkbox>
+                <p-divider></p-divider>
+              </div>
+            </div>
+        </ng-template>
+      </p-splitter>
+      <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check"  pTooltip="Editar" [rounded]="true" [text]="true"  (click)="guardarCambios()"  severity="success "></p-button>
+        <p-button icon="pi pi-times"  pTooltip="Cancelar" [rounded]="true" [text]="true" severity="danger " (click)="cerrar()"></p-button>
+      </ng-template>
+  </p-card>
+</div>

@@ -26,10 +26,19 @@
 <p-sidebar [(visible)]="sidebarLeft" position="left" styleClass="w-10rem" >
    <a routerLink="/producto/lista" routerLinkActive="active"  (click)="closeSidebarLeft()"> <i class="pi pi-list icon"> &nbsp; </i> Productos</a>
    <p-divider></p-divider>
-   <a routerLink="/cliente/cliente"> <i class="pi pi-user icon"> &nbsp; </i> Clientes </a>
+   <a routerLink="/cliente/cliente">
+    <i class="pi pi-users icon"> &nbsp; </i> Clientes
+   </a>
+   <p-divider></p-divider>
+   <a routerLink="/venta/pedido">
+    <i class="pi pi-file icon"> &nbsp; </i> Ventas
+   </a>
+
 </p-sidebar>
 
   <router-outlet></router-outlet>
+
+
 
 
 
