@@ -8,6 +8,7 @@
 
           <p-button  pTooltip="Editar" icon="pi pi-pencil"  severity="warning"(click)="openDialog(ven)"></p-button>
           <p-divider></p-divider>
+          {{ven.total}}
           <p-tabView styleClass="tabview-custom">
             <!--datos del cliente-->
             <p-tabPanel *ngFor="let cli of ven.clientesV">

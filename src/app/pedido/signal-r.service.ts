@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { ApiService } from '../api.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HubConnection, HttpClient, HubConnectionBuilder } from '@microsoft/signalr';
+import { HttpHeaders } from '@angular/common/http';
+import { DatosVenta } from '../venta/VentaModel';
 
 
 export interface Concepto {
@@ -58,6 +60,11 @@ export class SignalRService {
       console.log('Mensaje recibido de SignalR:', data);
       callback(data);
     });
+  };
+
+
+  getVenta() {
+
   };
 
 }
