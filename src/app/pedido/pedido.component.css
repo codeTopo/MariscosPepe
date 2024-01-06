@@ -1,0 +1,50 @@
+/* Estilos para las cartas */
+.cuadros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto; /* Ajustar altura automáticamente según contenido */
+  gap: 7px; /* Margen entre los elementos dentro de las celdas */
+  padding: 3.5px; /* Margen exterior de 3.5px en los cuatro lados */
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2.5rem;
+  background-color: #ecf0f3;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+  color: black;
+  margin-top: 0.5rem;
+}
+
+
+
+.carta {
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Contorno con color negro no muy marcado pero visible */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Efecto de sombra alrededor de la tarjeta */
+  margin-bottom: 1px;
+}
+
+/* Estilo para el encabezado de la carta */
+.matheader {
+  background-color: #007bff; /* Color de fondo del encabezado */
+  text-align: center; /* Texto centrado */
+}
+
+.headercontainer {
+display: flex;
+width: 100%;
+
+}
+
+.status-bar {
+text-align: center;
+padding: 10px;
+color: white;
+font-weight: bold;
+}
+
+.connected {
+background-color: green;
+}
+
+.error {
+background-color: red;
+}

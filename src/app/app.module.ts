@@ -12,7 +12,7 @@ import { DeleteComponent } from './delete/delete.component';
 import { ClienteModule } from './cliente/cliente.module';
 import { VentaModule } from './venta/venta.module';
 import { PedidoComponent } from './pedido/pedido.component';
-import { DialogComponent } from './pedido/dialog/dialog.component';
+
 
 
 
@@ -21,8 +21,7 @@ import { DialogComponent } from './pedido/dialog/dialog.component';
   declarations: [
     AppComponent,
     DeleteComponent,
-    PedidoComponent,
-    DialogComponent,
+    PedidoComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SignalRResponse, SignalRServiceService } from './signal-r.service';
 import { LocalStorageService } from './local-storage.service';
 import { DatosVenta } from '../venta/VentaModel';
-import { DialogComponent } from './dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../api.service';
 
@@ -18,13 +17,11 @@ export class PedidoComponent implements OnInit{
   datosVenta: DatosVenta[] = [];
   idVenta: number[] = [];
   isConnected: boolean = false;
-
   constructor(
     private signalRService: SignalRServiceService,
     private localStorageService: LocalStorageService,
-    private apiService:ApiService,
-    private dialog: MatDialog)
-    { };
+    )
+  { };
 
   formatearFecha(fecha: string): string {
     const date = new Date(fecha);
@@ -38,34 +35,18 @@ export class PedidoComponent implements OnInit{
       this.signalRData = data;
       const ventaId = data.venta.idVenta; // Obtener el ID de la nueva venta
       this.localStorageService.guardarMensaje(ventaId);
+      this.getVentaDetails(ventaId);
     });
     this.signalRService.connectionStatus$.subscribe((status) => {
       this.isConnected = status;
     });
   };
 
-  seleccionarVenta(id: number): void {
-    this.apiService.getId(id).subscribe(
-      (ventaInfo: DatosVenta) => {
-        this.openDialog(ventaInfo);
-      },
-      error => {
-        console.error('Error al obtener información de la venta:', error);
-      }
-    );
-  }
-
-  openDialog(ventaInfo: DatosVenta): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '500px',
-      data: { venta: ventaInfo }
+  getVentaDetails(id: number) {
+    this.signalRService.getVenta(id).subscribe((data: DatosVenta[]) => {
+      this.datosVenta = data;
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('El diálogo se cerró.');
-    });
-  }
-
+  };
 
   actualizarMensajes(): void {
     this.idVenta = this.localStorageService.getMensajesGuardados().reverse();

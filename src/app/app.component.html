@@ -14,6 +14,11 @@
   </ng-template>
 </p-toolbar> <br>
 
+<div class="status-bar" [ngClass]="{'connected': isConnected, 'error': !isConnected}">
+  {{ isConnected ? 'Conectado para recibir mensajes' : 'Error de conexión' }}
+</div>
+
+
 <!--Para inicio de sesion  -->
 <p-sidebar [(visible)]="sidebarTop" position="top" styleClass="h-auto" >
   <router-outlet name="login"></router-outlet>

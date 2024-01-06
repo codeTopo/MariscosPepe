@@ -1,50 +1,77 @@
-<!-- pedido.component.html -->
 
 
-<div *ngIf="!signalRData">
-  <p>No hay datos disponibles.</p>
-</div>
+<mat-tab-group class="headercontainer">
 
-<div *ngIf="!isConnected">
-  <p>Desconectado del servidor SignalR.</p>
-</div>
+  <mat-tab label="Pedidos">
+    <div class="cuadros">
+      <div *ngFor="let venta of datosVenta" class="carta">
+        <h3>
+          Pedido Numero #{{venta.idVenta}} &nbsp; &nbsp;Fecha {{ formatearFecha(venta.fecha) }} <br>
+          Total A Pagar ${{venta.total}}  &nbsp; &nbsp; Forma De Pago{{venta.pago}}
+        </h3>
+        <mat-divider></mat-divider>
+        <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Datos Del Cliente">
+          <mat-card *ngFor="let cliente of venta.clientesV">
+            <mat-card-content>
+              <span>Nombre:</span> &nbsp;
+              {{ cliente.nombre }}
+              {{ cliente.apellido }}
+              <mat-divider></mat-divider> <br>
+                <span>Calle:</span> &nbsp; &nbsp; {{ cliente.calle }} <br>
+                <span>Colonia:</span> &nbsp; {{ cliente.colonia }}<br>
+                <span>Numero:</span>&nbsp;  {{ cliente.numero }}<br>
+                <span>Telefono:</span> &nbsp; {{ cliente.telefono }}<br>
+                <span>Referencias:</span> &nbsp; {{ cliente.referencia }}<br>
 
-<p-tabView>
+            </mat-card-content>
+          </mat-card>
+        </mat-tab >
+        <mat-tab label="Datos Del Pedido" >
+          <mat-card  class="cuadrito" *ngFor="let producto of venta.pedido">
+            <thead>
+              <tr>
+                <strong>Cantidad: {{producto.cantidad}}</strong>
+              </tr>
+            </thead>
+            <table *ngFor="let nombre of producto.productoV">
+              <thead>
+                <tr>
+                  <td>Nombre Productos:</td>
+                  <mat-divider></mat-divider>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> {{nombre.nombre}}
+                </tr>
+              </tbody>
+            </table>
+            <mat-divider></mat-divider>
+          </mat-card>
+        </mat-tab>
+        </mat-tab-group>
 
-  <p-tabPanel header="Pedidos Entrantes">
-    <p-card class="flex flex-column-reverse">
-      <div *ngIf="signalRData">
-        <h2>Información de la Venta</h2>
-        <p>Fecha: {{ formatearFecha(signalRData.venta.fecha) }}</p>
-        <p>ID Cliente: {{ signalRData.venta.idCliente }}</p>
-        <p>ID Venta: {{ signalRData.venta.idVenta }}</p>
-        <p>Pago: {{ signalRData.venta.pago }}</p>
-        <p>Total: {{ signalRData.venta.total }}</p>
-
-        <h2>Conceptos</h2>
-        <div *ngFor="let concepto of signalRData.concepto">
-          <p>ID Concepto: {{ concepto.idConcepto }}</p>
-          <p>ID Producto: {{ concepto.idProducto }}</p>
-          <p>ID Venta: {{ concepto.idVenta }}</p>
-          <p>Cantidad: {{ concepto.cantidad }}</p>
-          <p>Precio: {{ concepto.precio }}</p>
-          <hr>
-        </div>
       </div>
-    </p-card>
-  </p-tabPanel>
-
-  <p-tabPanel header="Lista de Pedidos ">
-    <div class="flex flex-column-reverse">
-      <h2>ID de Ventas Recibidas</h2>
-      <ul>
-        <li *ngFor="let id of idVenta">
-          {{ id }}
-          <button (click)="eliminarMensaje(id)">Eliminar</button>
-        </li>
-      </ul>
     </div>
-    <button (click)="eliminarTodosLosMensajes()">Eliminar Lista</button>
+  </mat-tab>
 
-  </p-tabPanel>
-</p-tabView>
+  <mat-tab  label="Lista De Pedidos Entrante">
+
+    <p-button label="Actualizar toda la lista" [rounded]="true" severity="info"  (click)="actualizarMensajes()"></p-button>  &nbsp; &nbsp;
+    <p-button label="Eliminar toda la lista" [rounded]="true" severity="danger" (click)="eliminarTodosLosMensajes()"></p-button>
+    <mat-divider></mat-divider>
+    <ul>
+      <li *ngFor="let ventaId of idVenta" class="flex flex-row flex-wrap">
+        <div class="flex flex-row flex-wrap">
+          <div class="flex align-items-center justify-content-center ">
+            Numero de Venta #{{ ventaId }}
+            <p-button icon="pi pi-times"  pTooltip="Eliminar de la Lista" [rounded]="true" [text]="true" severity="danger " (click)="eliminarMensaje(ventaId)"></p-button>
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </mat-tab>
+</mat-tab-group>
+

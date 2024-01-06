@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Respuestas } from './Respuestas';
 import { DatosVenta } from './venta/VentaModel';
 
@@ -10,6 +10,8 @@ import { DatosVenta } from './venta/VentaModel';
 })
 export class ApiService {
 
+  private mensajesSubject = new BehaviorSubject<string[]>([]);
+  mensajes$ = this.mensajesSubject.asObservable();
   public apiUrl = 'https://mariscospepe.somee.com'; // Coloca la URL de tu API aquí
 
   constructor(private http: HttpClient) {}
@@ -52,7 +54,6 @@ export class ApiService {
     const url = `${this.apiUrl}/${endpoint}`;
     const headers = this.getHeaders();
     return this.http.delete<Respuestas<T>>(url, { headers, body });
-  }
-
+  };
 
 }

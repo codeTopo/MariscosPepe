@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { NavigationExtras } from '@angular/router';
+import { SignalRServiceService } from './pedido/signal-r.service';
+import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,29 @@ import { NavigationExtras } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'MariscosPepe';
 
+  isConnected: boolean = false;
   sidebarTop: boolean = false;
   sidebarLeft: boolean = false;
-  botonColor: string = 'red' // Nueva propiedad para el color del botón
+  botonColor: string = 'red'
+  messages: string[] = [];
 
-  constructor(private router: Router, private cdr: ChangeDetectorRef, private messageService: MessageService) { }
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private messageService: MessageService,
+    private signalRService: SignalRServiceService,
+    private mensajesService: ApiService,
+    )
+  { }
 
   ngOnInit() {
     // Verificar si hay un objeto en el local storage
     const objetoEnLocalStorage = localStorage.getItem('token');
     // Establecer el color del botón en consecuencia
     this.botonColor = objetoEnLocalStorage ? 'green' : 'red';
+    this.signalRService.connectionStatus$.subscribe((status) => {
+      this.isConnected = status;
+    });
   }
 
   navigateToValidar() {

@@ -3,7 +3,7 @@
   <!--Panel Principal-->
   <ng-template pTemplate>
     <mat-drawer-container class="example-container"  [ngStyle]="{ 'width': '100%', 'height': '100%', 'background': 'linear-gradient(to right, #1f49aa, #7ca8ba, #7492d7)' }">
-      <div class="flex flex-row flex-wrap ">
+      <div class="flex flex-row flex-wrap-reverse ">
         <p-card class="bg-primary-200 w-23rem  m-auto mt-1  border-round shadow-3"  *ngFor="let ven of venta" [header]="'#' + ven.idVenta.toString() + ' - Fecha: ' +  _datePipe.transform(ven.fecha, 'dd/MM', 'en-US')">
 
           <p-button  pTooltip="Editar" icon="pi pi-pencil"  severity="warning"(click)="openDialog(ven)"></p-button>

@@ -19,7 +19,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { TabViewModule } from 'primeng/tabview';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   exports:[
@@ -43,6 +45,9 @@ import { TabViewModule } from 'primeng/tabview';
     MatDialogModule,
     CheckboxModule,
     TabViewModule,
+    MatTabsModule,
+    MatCardModule,
+    MatDividerModule
   ]
 })
 export class PrimeModule { }

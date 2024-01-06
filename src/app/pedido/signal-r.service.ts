@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject } from 'rxjs';
 import { ApiService } from '../api.service';
+import { DatosVenta } from '../venta/VentaModel';
 
 
 export interface Concepto {
@@ -21,6 +22,8 @@ export interface Concepto {
     idVenta: number;
     pago: string;
     total: number;
+    status:string,
+    repartidor:string,
     };
    concepto: Concepto[];
 }
@@ -59,16 +62,21 @@ export class SignalRServiceService {
   };
 
   onNuevoVentaAgregada(callback: (data: SignalRResponse) => void) {
-    this.hubConnection.on('RecibirNuevoVenta', async (data: SignalRResponse) => {
+    this.hubConnection.on('RecibirNuevoVenta', (data: SignalRResponse) => {
       console.log('Mensaje recibido de SignalR:', data);
-      try {
-        const ventaInfo = await this.httpService.getId(data.venta.idVenta).toPromise();
-        console.log('Información adicional de la venta:', ventaInfo);
-      } catch (error) {
-        console.error('Error al obtener información adicional de la venta:', error);
-      }
       callback(data);
     });
+  };
+
+    getVenta(id: number): Observable<DatosVenta[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    const options = { headers: headers };
+    const url = `${this.httpService.apiUrl}/api/ventas/${id}`;
+    return this.http.get<DatosVenta[]>(url, options);
   };
 
 }
