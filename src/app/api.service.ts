@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Respuestas } from './Respuestas';
+import { DatosVenta } from './venta/VentaModel';
 
 
 @Injectable({
@@ -26,6 +27,13 @@ export class ApiService {
     const headers = this.getHeaders();
     return this.http.get<Respuestas<T>>(url, { headers });
   }
+
+  getId(id: number): Observable<DatosVenta[]> {
+    const endpoint = 'api/ventas';
+     const url = `${this.apiUrl}/${endpoint}/${id}`;
+    const headers = this.getHeaders();
+    return this.http.get<DatosVenta[]>(url, {headers});
+  };
 
   public post<T>(endpoint: string, body: any): Observable<Respuestas<T>> {
     const url = `${this.apiUrl}/${endpoint}`;

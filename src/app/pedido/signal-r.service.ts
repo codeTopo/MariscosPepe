@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { BehaviorSubject } from 'rxjs';
 import { ApiService } from '../api.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { HubConnection, HttpClient, HubConnectionBuilder } from '@microsoft/signalr';
-import { HttpHeaders } from '@angular/common/http';
-import { DatosVenta } from '../venta/VentaModel';
 
 
 export interface Concepto {
@@ -25,17 +25,19 @@ export interface Concepto {
    concepto: Concepto[];
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class SignalRService {
+export class SignalRServiceService {
+
 
   private hubConnection: HubConnection;
   private url = `${this.httpService.apiUrl}/notificationHub`;
   private connectionStatusSubject = new BehaviorSubject<boolean>(false);
   connectionStatus$ = this.connectionStatusSubject.asObservable();
 
-  constructor(private http: HttpClient, private httpService:ApiService) {
+  constructor(private http: HttpClient, private httpService: ApiService ) {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.url)
       .build();
@@ -53,18 +55,22 @@ export class SignalRService {
         console.error('Error al conectar con SignalR: ', error);
         this.connectionStatusSubject.next(false);
       });
-  }
-
-  onNuevoVentaAgregada(callback: (data: SignalRResponse) => void) {
-    this.hubConnection.on('RecibirNuevoVenta', (data: SignalRResponse) => {
-      console.log('Mensaje recibido de SignalR:', data);
-      callback(data);
-    });
   };
 
+  onNuevoVentaAgregada(callback: (data: SignalRResponse) => void) {
+    this.hubConnection.on('RecibirNuevoVenta', async (data: SignalRResponse) => {
+      console.log('Mensaje recibido de SignalR:', data);
 
-  getVenta() {
+      // Obtener información adicional de la venta por ID utilizando ApiService
+      try {
+        const ventaInfo = await this.httpService.getId(data.venta.idVenta).toPromise();
+        console.log('Información adicional de la venta:', ventaInfo);
+      } catch (error) {
+        console.error('Error al obtener información adicional de la venta:', error);
+      }
 
+      callback(data);
+    });
   };
 
 }
