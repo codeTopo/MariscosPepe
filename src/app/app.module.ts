@@ -12,6 +12,7 @@ import { DeleteComponent } from './delete/delete.component';
 import { ClienteModule } from './cliente/cliente.module';
 import { VentaModule } from './venta/venta.module';
 import { PedidoComponent } from './pedido/pedido.component';
+import { DialogComponent } from './pedido/dialog/dialog.component';
 
 
 
@@ -21,6 +22,7 @@ import { PedidoComponent } from './pedido/pedido.component';
     AppComponent,
     DeleteComponent,
     PedidoComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,

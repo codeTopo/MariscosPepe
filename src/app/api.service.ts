@@ -28,12 +28,13 @@ export class ApiService {
     return this.http.get<Respuestas<T>>(url, { headers });
   }
 
-  getId(id: number): Observable<DatosVenta[]> {
+  getId(id: number): Observable<DatosVenta> {
     const endpoint = 'api/ventas';
      const url = `${this.apiUrl}/${endpoint}/${id}`;
     const headers = this.getHeaders();
-    return this.http.get<DatosVenta[]>(url, {headers});
+    return this.http.get<DatosVenta>(url, {headers});
   };
+
 
   public post<T>(endpoint: string, body: any): Observable<Respuestas<T>> {
     const url = `${this.apiUrl}/${endpoint}`;

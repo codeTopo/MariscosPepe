@@ -37,6 +37,7 @@ export class SignalRServiceService {
   private connectionStatusSubject = new BehaviorSubject<boolean>(false);
   connectionStatus$ = this.connectionStatusSubject.asObservable();
 
+
   constructor(private http: HttpClient, private httpService: ApiService ) {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.url)
@@ -60,15 +61,12 @@ export class SignalRServiceService {
   onNuevoVentaAgregada(callback: (data: SignalRResponse) => void) {
     this.hubConnection.on('RecibirNuevoVenta', async (data: SignalRResponse) => {
       console.log('Mensaje recibido de SignalR:', data);
-
-      // Obtener información adicional de la venta por ID utilizando ApiService
       try {
         const ventaInfo = await this.httpService.getId(data.venta.idVenta).toPromise();
         console.log('Información adicional de la venta:', ventaInfo);
       } catch (error) {
         console.error('Error al obtener información adicional de la venta:', error);
       }
-
       callback(data);
     });
   };

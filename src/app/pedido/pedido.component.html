@@ -1,23 +1,5 @@
 <!-- pedido.component.html -->
 
-<div *ngIf="signalRData">
-  <h2>Información de la Venta</h2>
-  <p>Fecha: {{ formatearFecha(signalRData.venta.fecha) }}</p>
-  <p>ID Cliente: {{ signalRData.venta.idCliente }}</p>
-  <p>ID Venta: {{ signalRData.venta.idVenta }}</p>
-  <p>Pago: {{ signalRData.venta.pago }}</p>
-  <p>Total: {{ signalRData.venta.total }}</p>
-
-  <h2>Conceptos</h2>
-  <div *ngFor="let concepto of signalRData.concepto">
-    <p>ID Concepto: {{ concepto.idConcepto }}</p>
-    <p>ID Producto: {{ concepto.idProducto }}</p>
-    <p>ID Venta: {{ concepto.idVenta }}</p>
-    <p>Cantidad: {{ concepto.cantidad }}</p>
-    <p>Precio: {{ concepto.precio }}</p>
-    <hr>
-  </div>
-</div>
 
 <div *ngIf="!signalRData">
   <p>No hay datos disponibles.</p>
@@ -27,14 +9,42 @@
   <p>Desconectado del servidor SignalR.</p>
 </div>
 
-<div>
-  <h2>ID de Ventas Recibidas</h2>
-  <ul>
-    <li *ngFor="let id of idVenta">
-      {{ id }}
-      <button (click)="eliminarMensaje(id)">Eliminar</button>
-    </li>
-  </ul>
-</div>
+<p-tabView>
 
-<button (click)="eliminarTodosLosMensajes()">Eliminar Todos los Mensajes</button>
+  <p-tabPanel header="Pedidos Entrantes">
+    <p-card class="flex flex-column-reverse">
+      <div *ngIf="signalRData">
+        <h2>Información de la Venta</h2>
+        <p>Fecha: {{ formatearFecha(signalRData.venta.fecha) }}</p>
+        <p>ID Cliente: {{ signalRData.venta.idCliente }}</p>
+        <p>ID Venta: {{ signalRData.venta.idVenta }}</p>
+        <p>Pago: {{ signalRData.venta.pago }}</p>
+        <p>Total: {{ signalRData.venta.total }}</p>
+
+        <h2>Conceptos</h2>
+        <div *ngFor="let concepto of signalRData.concepto">
+          <p>ID Concepto: {{ concepto.idConcepto }}</p>
+          <p>ID Producto: {{ concepto.idProducto }}</p>
+          <p>ID Venta: {{ concepto.idVenta }}</p>
+          <p>Cantidad: {{ concepto.cantidad }}</p>
+          <p>Precio: {{ concepto.precio }}</p>
+          <hr>
+        </div>
+      </div>
+    </p-card>
+  </p-tabPanel>
+
+  <p-tabPanel header="Lista de Pedidos ">
+    <div class="flex flex-column-reverse">
+      <h2>ID de Ventas Recibidas</h2>
+      <ul>
+        <li *ngFor="let id of idVenta">
+          {{ id }}
+          <button (click)="eliminarMensaje(id)">Eliminar</button>
+        </li>
+      </ul>
+    </div>
+    <button (click)="eliminarTodosLosMensajes()">Eliminar Lista</button>
+
+  </p-tabPanel>
+</p-tabView>
