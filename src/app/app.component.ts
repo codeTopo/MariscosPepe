@@ -5,6 +5,7 @@ import { SignalRServiceService } from './pedido/signal-r.service';
 import { forkJoin } from 'rxjs';
 import { Respuestas } from './Respuestas';
 import { HerramientasService } from './herramientas.service';
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ export class AppComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private messageService: MessageService,
     private signalRService: SignalRServiceService,
-    private herramienta:HerramientasService
+    private herramienta:HerramientasService,
+    private loginService: LoginService,
     )
   { }
 
@@ -40,7 +42,20 @@ export class AppComponent implements OnInit {
     this.signalRService.connectionStatus$.subscribe((status) => {
       this.isConnected = status;
     });
-  }
+  };
+  logout(): void {
+    // Llama al método de logout del servicio
+    this.loginService.logout();
+    //Puedes redirigir a la página de inicio u otro lugar después del cierre de sesión si es necesario
+    this.router.navigate([{ outlets: { login: ['login', 'validar'] } }]);
+    this.sidebarTop = true;
+    this.cdr.detectChanges();
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: 'Cerraste sesión con éxito'
+    });
+  };
   navigateToValidar() {
     this.router.navigate([{ outlets: { login: ['login', 'validar'] } }]);
     this.sidebarTop = true;

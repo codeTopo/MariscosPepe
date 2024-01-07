@@ -22,7 +22,6 @@ export class PedidoComponent implements OnInit{
     private signalRService: SignalRServiceService,
     private localStorageService: LocalStorageService,
     private messageService: MessageService,
-    private router: Router,
     )
   { };
 
@@ -48,12 +47,6 @@ export class PedidoComponent implements OnInit{
       this.isConnected = status;
     });
   };
-
-  manejarClickEnToast(event: any) {
-    // Puedes redirigir a la ruta "/" aquí
-    this.router.navigate(['/']);
-  }
-
   getVentaDetails(id: number) {
     this.signalRService.getVenta(id).subscribe((data: DatosVenta[]) => {
       this.datosVenta = data;

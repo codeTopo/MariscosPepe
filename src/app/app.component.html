@@ -27,10 +27,10 @@
 </p-sidebar>
 <p-toast [style]="{ 'marginTop': '75px' }"></p-toast>
 
-
+<p-toast></p-toast>
 
 <!--Para mostrar las rutas  -->
-<p-sidebar [(visible)]="sidebarLeft" position="left" styleClass="w-10rem" >
+<p-sidebar [(visible)]="sidebarLeft" position="left" styleClass="w-12rem" >
   <strong>Barra De Acciones</strong>
   <p-divider></p-divider>
   <a routerLink="/producto/lista" routerLinkActive="active"  (click)="closeSidebarLeft()"> <i class="pi pi-list icon"> &nbsp; </i> Productos</a>
@@ -52,7 +52,7 @@
   <div class="col flex align-items-center justify-content-center">
     <div class="container">
       <div>
-        <p-button  label="Reiniciar Ventas" [rounded]="true" severity="danger"(click)="resetTables(['Venta', 'Concepto'])">
+        <p-button size="small"  label="Reiniciar Ventas" [rounded]="true" severity="danger"(click)="resetTables(['Venta', 'Concepto'])">
         </p-button>
       </div>
       <p-divider></p-divider>
@@ -61,6 +61,8 @@
       </div>
     </div>
   </div>
+  <p-divider></p-divider>
+  <p-button size="small"  label="Cerrar Sesion" [rounded]="true" severity="danger"(click)="logout()"></p-button>
 </p-sidebar>
 
 <router-outlet></router-outlet>

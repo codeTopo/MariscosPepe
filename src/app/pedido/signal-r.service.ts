@@ -39,6 +39,7 @@ export class SignalRServiceService {
   private url = `${this.httpService.apiUrl}/notificationHub`;
   private connectionStatusSubject = new BehaviorSubject<boolean>(false);
   connectionStatus$ = this.connectionStatusSubject.asObservable();
+  private notificationSound = new Audio('assets/notificacion/Sonido.mp3');
 
 
   constructor(private http: HttpClient, private httpService: ApiService ) {
@@ -61,14 +62,19 @@ export class SignalRServiceService {
       });
   };
 
+  private playNotificationSound() {
+    this.notificationSound.play();
+  }
+
   onNuevoVentaAgregada(callback: (data: SignalRResponse) => void) {
     this.hubConnection.on('RecibirNuevoVenta', (data: SignalRResponse) => {
       console.log('Mensaje recibido de SignalR:', data);
+      this.playNotificationSound();
       callback(data);
     });
   };
 
-    getVenta(id: number): Observable<DatosVenta[]> {
+  getVenta(id: number): Observable<DatosVenta[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
