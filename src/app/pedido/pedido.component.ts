@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SignalRResponse, SignalRServiceService } from './signal-r.service';
 import { LocalStorageService } from './local-storage.service';
 import { DatosVenta } from '../venta/VentaModel';
-import { MatDialog } from '@angular/material/dialog';
-import { ApiService } from '../api.service';
+import {  MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,9 +17,12 @@ export class PedidoComponent implements OnInit{
   datosVenta: DatosVenta[] = [];
   idVenta: number[] = [];
   isConnected: boolean = false;
+
   constructor(
     private signalRService: SignalRServiceService,
     private localStorageService: LocalStorageService,
+    private messageService: MessageService,
+    private router: Router,
     )
   { };
 
@@ -36,11 +39,20 @@ export class PedidoComponent implements OnInit{
       const ventaId = data.venta.idVenta; // Obtener el ID de la nueva venta
       this.localStorageService.guardarMensaje(ventaId);
       this.getVentaDetails(ventaId);
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Nueva venta agregada',
+      });
     });
     this.signalRService.connectionStatus$.subscribe((status) => {
       this.isConnected = status;
     });
   };
+
+  manejarClickEnToast(event: any) {
+    // Puedes redirigir a la ruta "/" aquí
+    this.router.navigate(['/']);
+  }
 
   getVentaDetails(id: number) {
     this.signalRService.getVenta(id).subscribe((data: DatosVenta[]) => {

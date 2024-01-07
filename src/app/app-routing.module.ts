@@ -4,11 +4,11 @@ import { PedidoComponent } from './pedido/pedido.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/pedidos', pathMatch: 'full' },
+  { path: 'pedidos', component: PedidoComponent },
   {path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule),  outlet: 'login',},
   {path:'producto', loadChildren:()=> import('./producto/producto.module').then(m =>m.ProductoModule),},
   {path:'cliente', loadChildren:()=> import('./cliente/cliente.module').then(m =>m.ClienteModule)},
   {path:'venta', loadChildren:()=> import('./venta/venta.module').then(m =>m.VentaModule)},
-  { path: 'pedidos', component: PedidoComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

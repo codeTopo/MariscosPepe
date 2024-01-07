@@ -13,10 +13,6 @@ import { ClienteModule } from './cliente/cliente.module';
 import { VentaModule } from './venta/venta.module';
 import { PedidoComponent } from './pedido/pedido.component';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
