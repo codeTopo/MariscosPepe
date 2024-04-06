@@ -12,7 +12,7 @@ export class ApiService {
 
   private mensajesSubject = new BehaviorSubject<string[]>([]);
   mensajes$ = this.mensajesSubject.asObservable();
-  public apiUrl = 'https://mariscospepe.somee.com'; // Coloca la URL de tu API aquí
+  public apiUrl = "https://mariscospepe.somee.com"; // Coloca la URL de tu API aquí
 
   constructor(private http: HttpClient) {}
 
